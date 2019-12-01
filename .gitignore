@@ -1,0 +1,8 @@
+# Ignore docs files
+.DS_Store
+.Thumbs.db
+.sass-cache/
+node_modules/
+npm-debug.log
+local/
+__pycache__
