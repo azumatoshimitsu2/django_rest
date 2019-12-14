@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.utils import timezone
+from concurrency.fields import AutoIncVersionField
 
 class Book(models.Model):
   """
@@ -8,7 +9,8 @@ class Book(models.Model):
   """
   class Meta:
     db_table = 'book'
-  
+
+  version = AutoIncVersionField()
   id = models.UUIDField(primary_key = True,
   default = uuid.uuid4, editable = False)
   title = models.CharField(verbose_name = 'タイトル', max_length = 20)
