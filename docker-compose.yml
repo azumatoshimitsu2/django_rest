@@ -26,7 +26,7 @@ services:
       MYSQL_ROOT_PASSWORD: axb75QwBQv8D
       TZ: 'Asia/Tokyo'
     volumes:
-      - mysite.db.volume:/var/lib/mysql
+      - ./db/mysql_data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
 
   web:
