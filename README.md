@@ -11,3 +11,6 @@ mysite/settings.py
  STATIC_ROOT = '/static'
 
 http://localhost:8000 
+
+API ドキュメント
+http://localhost:8000/api/docs/
