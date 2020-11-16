@@ -6,7 +6,7 @@ volumes:
 
 services:
   nginx:
-    image: nginx:1.13
+    image: nginx
     container_name: mysite.nginx
     ports:
       - "8000:8000"
