@@ -1,7 +1,7 @@
 最初の起動
 docker-compose up -d db
 docker-compose up -d --build
-docker-compose run web django-admin.py startproject api .
+docker-compose run web django-admin.py startproject mysite .
 
 docker-compose run web ./manage.py migrate
 docker-compose run web ./manage.py createsuperuser --username admin --email admin@localhost
