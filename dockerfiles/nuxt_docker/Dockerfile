@@ -7,10 +7,6 @@ RUN mkdir -p /code
 # 本番環境では production
 ENV NODE_ENV=development
 
-# yarnとaxiosをinstall
-RUN yarn install
-RUN yarn add @nuxtjs/axios
-
 # ディレクトリを移動する
 WORKDIR /code
 

@@ -34,8 +34,7 @@ services:
     build: ./dockerfiles/nuxt_docker 
     tty: true
     # command: >
-    #   bash -c 'cd front &&
-    #   yarn dev'
+    #   /bin/bash -c 'cd front && yarn dev'
     volumes:
       - ./nuxt:/code
     ports:
@@ -52,6 +51,7 @@ services:
       - ./static:/static
     depends_on:
       - web
+      #- front
 
 volumes:
   mysqldata:
