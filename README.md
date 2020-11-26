@@ -50,15 +50,12 @@ docker-compose up -d --build
 最初の起動（Nuxt のアプリが既にある場合）
 docker-compose up -d db
 docker-compose up -d --build
-docker-compose run web django-admin.py startproject mysite .
 
 docker-compose run web ./manage.py migrate
-docker-compose run web ./manage.py createsuperuser --username admin --email admin@localhost
+docker-compose run web ./manage.py createsuperuser
 
 //処理に時間がかかって止まるのでインストールは事前に行う
-docker-compose run web /bin/bash -c 'cd front && yarn install'
+docker-compose run front /bin/bash -c 'cd front && yarn install'
 
-docker-compose down
-docker-compose run web ./manage.py collectstatic
 //サーバ起動 http://localhost
 docker-compose up -d --build
