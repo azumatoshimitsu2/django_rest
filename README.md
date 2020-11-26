@@ -4,7 +4,8 @@ docker-compose up -d --build
 docker-compose run web django-admin.py startproject mysite .
 
 docker-compose run web ./manage.py migrate
-docker-compose run web ./manage.py createsuperuser --username admin --email admin@localhost
+//Django のスーパーユーザー作成
+docker-compose run web ./manage.py createsuperuser
 
 docker exec -it nuxt /bin/bash
 yarn create nuxt-app front
@@ -59,4 +60,5 @@ docker-compose run web /bin/bash -c 'cd front && yarn install'
 
 docker-compose down
 docker-compose run web ./manage.py collectstatic
+//サーバ起動 http://localhost
 docker-compose up -d --build
