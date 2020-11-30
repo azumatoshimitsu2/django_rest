@@ -10,7 +10,7 @@ services:
     expose:
       - 3306
     environment:
-      MYSQL_ROOT_PASSWORD: axb75QwBQv8D
+      MYSQL_ROOT_PASSWORD: 設定するパスワード
       TZ: 'Asia/Tokyo'
     volumes:
       - ./db/mysql_data:/var/lib/mysql
@@ -20,7 +20,7 @@ services:
     container_name: django
     build: ./dockerfiles/django_docker
     command: 
-      uwsgi --socket :8000 --http :8001  --module api.wsgi --py-autoreload 1 -b 32768
+      uwsgi --socket :8000 --http :8001  --module mysite.wsgi --py-autoreload 1 -b 32768
     volumes:
       - ./django:/code
       - ./static:/static
