@@ -1,4 +1,7 @@
 最初の起動（Nuxt のアプリをつくっていない場合）
+
+MYSQL_ROOT_PASSWORD を設定
+
 docker-compose up -d db
 docker-compose up -d --build
 docker-compose run web django-admin.py startproject mysite .
@@ -10,7 +13,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mysite',
         'USER': 'root',
-        'PASSWORD': '設定したパスワード',
+        'PASSWORD': 'password',
         'HOST': 'db',
         'PORT': '3306',
         'OPTIONS': {
@@ -25,7 +28,7 @@ docker-compose run web ./manage.py migrate
 docker-compose run web ./manage.py createsuperuser
 
 docker exec -it nuxt /bin/bash
-yarn create nuxt-app front
+npx create-nuxt-app
 //インタラクティブなアプリの設定が始まるので設定
 exit
 
@@ -36,14 +39,7 @@ exit
     host: '0.0.0.0',  
   },
 
-docker-compose.yml
-の↓のコメントアウト2箇所を解除
-# command: >
-#   /bin/bash -c 'cd front && yarn dev'
-
-#- front
-
-./django/api/settings.py
+./django/mysite/settings.py
 ALLOWED_HOSTS = []
 ↓に下記変え
 ALLOWED_HOSTS = ["localhost","django"]
@@ -60,16 +56,18 @@ CORS_ORIGIN_WHITELIST = [
 CORS_ALLOW_CREDENTIALS = True
 
 docker-compose down
-docker-compose run web ./manage.py collectstatic
 docker-compose up -d --build
+docker-compose run web ./manage.py collectstatic
 
 
 最初の起動（Nuxt のアプリが既にある場合）
-docker-compose up -d db
 
-//処理に時間がかかって止まるのでインストールは事前に行う
-docker-compose run front /bin/bash -c 'cd front && yarn install'
+docker-compose up -d --build
+docker exec -it nuxt /bin/bash
+cd front
+yarn install
 
+docker-compose run web ./manage.py makemigrations
 docker-compose run web ./manage.py migrate
 docker-compose run web ./manage.py createsuperuser
 

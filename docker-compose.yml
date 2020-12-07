@@ -10,7 +10,7 @@ services:
     expose:
       - 3306
     environment:
-      MYSQL_ROOT_PASSWORD: 設定するパスワード
+      MYSQL_ROOT_PASSWORD: password
       TZ: 'Asia/Tokyo'
     volumes:
       - ./db/mysql_data:/var/lib/mysql
@@ -51,7 +51,6 @@ services:
       - ./static:/static
     depends_on:
       - web
-      #- front
 
 volumes:
   mysqldata:
